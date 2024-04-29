@@ -7,13 +7,12 @@ text_bg='#aa80ff'
 text_col='#19004d'
 #===
 def get_no_letters():
-    a=[]
     hangman=tk.Tk()
     hangman['background']=bg
     getvar=tk.StringVar()
+    global no_of_letters
     def done():
         no_of_letters=getvar.get()
-        a.append(no_of_letters)
         hangman.destroy()
     string1=tk.Label(text='Enter the number of letters',bg=text_bg,fg=text_col,font=("Arial", 13)).place(x=10,y=5)
     tk.Entry(textvariable=getvar).place(x=10,y=30)
@@ -22,7 +21,7 @@ def get_no_letters():
     hangman.title("Hangman solver")
     hangman.geometry("750x300")
     hangman.mainloop()
-    return a
+    return no_of_letters
 
 def game_play(word,wrd_txt):
     a=[]
