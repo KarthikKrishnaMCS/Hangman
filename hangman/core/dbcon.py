@@ -1,57 +1,50 @@
 import mysql.connector as cn
 import os
 
-#====DB
+# Database credentials
+db_user = 'root'
+db_pass = '123456789'
 
-db_user='root'
-db_pass='123456789'
-
-#====
 def db_con_():
-    db_=cn.connect(host='localhost', database="hangman", user=db_user, passwd=db_pass, charset="utf8")
-    cur_=db_.cursor()
-    return db_,cur_
+    """Creating a database connection and returning the connection and cursor objects."""
+    db = cn.connect(host='localhost', database="hangman", user=db_user, passwd=db_pass, charset="utf8")
+    cur = db.cursor()
+    return db, cur
 
 def initial_setup():
-    if os.path.exists('./core/.done')==False:
-        print("Lemme setup the DB :)))")
-        db=cn.connect(host='localhost',user=db_user,passwd=db_pass,charset='utf8')
-        cur=db.cursor()
-        cur.execute('create database hangman')
-        cur.execute('use hangman')
-        cur.execute('create table words (word varchar(50))')
-        f=open('./core/words.txt').readlines()
-        for i in f:
-            cur.execute(f'insert into words values("{i.strip()}");')
+    if not os.path.exists('./core/.done'):
+        print("Setting up the database...")
+        db = cn.connect(host='localhost', user=db_user, passwd=db_pass, charset='utf8')
+        cur = db.cursor()
+        cur.execute('CREATE DATABASE hangman')
+        cur.execute('USE hangman')
+        cur.execute('CREATE TABLE words (word VARCHAR(50))')
+        with open('./core/words.txt') as file:
+            words = file.readlines()
+            for word in words:
+                cur.execute(f'INSERT INTO words VALUES ("{word.strip()}")')
         db.commit()
         db.close()
-        f=open('./core/.done','w').close()
-        print("Done :)"+'\n'+('='*16))
+        open('./core/.done', 'w').close()
+        print("Database setup complete.")
         
 def filter_out(word, trash_chars):
-    new_word=''
-    filtered1=[]
-    for i in word:
-        new_word+=i
-    db,cur=db_con_()
-    cur.execute(f'select * from words where word like "{new_word}";')
-    data=cur.fetchall()
-    for i in data:
-        filtered1.append(i[0])
+    new_word = ''.join(word)
+    db, cur = db_con_()
+    cur.execute(f'SELECT * FROM words WHERE word LIKE "{new_word}"')
+    data = cur.fetchall()
+    filtered_words = [i[0] for i in data]
     db.close()
-    trash=[]
-    for i in filtered1:
-        for j in trash_chars:
-            if j in i:
-                trash.append(i)
-    return list(set(filtered1)-set(trash))
+    trash = [i for i in filtered_words for j in trash_chars if j in i]
+    return list(set(filtered_words) - set(trash))
 
-common_chars1=['a','e', 'o','i']
+common_chars1 = ['a', 'e', 'o', 'i']
 
-def learn_word (word):
-    db,cur=db_con_()
-    cur.execute(f'insert into words values("{word}");')
-    print("word learnt")
+def learn_word(word):
+    #Learns a new word by inserting it into the database.
+    db, cur = db_con_()
+    cur.execute(f'INSERT INTO words VALUES ("{word}")')
+    print("Word learnt.")
     db.commit()
     db.close()
 
