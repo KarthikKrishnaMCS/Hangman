@@ -10,6 +10,10 @@ Madhav P Nair - 112301020
 <br>
 Sanjay Siva A - 112301030
 
+The game features dual gameplay modes:
+1) User plays Hangman: Players guess letters to identify a hidden word.
+2) Computer plays Hangman: The program intelligently guesses the user's word using algorithmic strategies.
+
 The file structure is as follows:
 
 ```txt
