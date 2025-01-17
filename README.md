@@ -9,3 +9,17 @@ Karthik Krishna M - 112301014
 Madhav P Nair - 112301020
 <br>
 Sanjay Siva A - 112301030
+
+The file structure is as follows
+
+```txt
+your_project_folder/
+│
+├── core/
+│   ├── dbcon.py
+│   ├── main.py
+│   ├── gui.py
+│   └── words.txt
+│
+└── hangman.py
+```
