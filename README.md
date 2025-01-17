@@ -23,3 +23,9 @@ hangman/
 │
 └── hangman.py
 ```
+
+To run the project:
+```bash
+cd hangman
+python3 hangman.py
+```
