@@ -28,7 +28,6 @@ python3 hangman.py
 
 This project was done as part of the course project in Introduction to Programming (ID110)
 
-<br>
 Group Members:
 <br>
 Karthik Krishna M - 112301014
