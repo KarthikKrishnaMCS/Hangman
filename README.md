@@ -10,10 +10,10 @@ Madhav P Nair - 112301020
 <br>
 Sanjay Siva A - 112301030
 
-The file structure is as follows
+The file structure is as follows:
 
 ```txt
-your_project_folder/
+hangman/
 │
 ├── core/
 │   ├── dbcon.py
