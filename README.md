@@ -1,14 +1,6 @@
 # Hangman
 Hangman is a classic word guessing game which has been enjoyed by generations and has its own legacy in the arena of computer games. It not only entertains, but also helps the user to ace vocabulary and spelling skills. 
 <br>
-<br>
-Group Members:
-<br>
-Karthik Krishna M - 112301014
-<br>
-Madhav P Nair - 112301020
-<br>
-Sanjay Siva A - 112301030
 
 The game features dual gameplay modes:
 1) User plays Hangman: Players guess letters to identify a hidden word.
@@ -33,3 +25,14 @@ To run the project:
 cd hangman
 python3 hangman.py
 ```
+
+This project was done as part of the course project in Introduction to Programming (ID110)
+
+<br>
+Group Members:
+<br>
+Karthik Krishna M - 112301014
+<br>
+Madhav P Nair - 112301020
+<br>
+Sanjay Siva A - 112301030
